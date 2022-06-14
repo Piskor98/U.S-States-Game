@@ -4,12 +4,16 @@ import csv
 import time
 import turtle
 from turtle import Turtle
+
+import pandas
+
 from title import Title
 from scoreboard import Scoreboard
 
 #screen settings
 screen=turtle.Screen()
 screen.title("U.S. States Game")
+
 screen.setup(740,630,0,0)
 #View on game title
 
@@ -66,6 +70,9 @@ while game:
 #Exit app
         if answer=='exit' or answer =='Exit':
             scoreboard.reset()
+            missing_states=[state for state in rows]
+            new_data=pandas.DataFrame(missing_states)
+            new_data.to_csv("states_to_learn.csv")
             screen.bye()
 
 
